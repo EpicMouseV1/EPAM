@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Brigade Login</title>
+</head>
+<body>
+     <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+    <div class="container">
+      <div class="site-logo">
+        <a href="index.html" class="text-black"><span class="text-primary">Divide&amp;Conquer</span></a>
+      </div>
+      <div class="toggle-button d-inline-block d-lg-none">
+        <a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3"></span></a>
+      </div>
+    </div>
+  </header>
+  <div class="login-container">
+    <h2>Brigade Login</h2>
+    <form action="#" method="post">
+      <div class="form-group">
+        <label for="email">Brigade name:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</body>
+</html>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .site-navbar {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-logo a {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .site-logo a span {
+      color: #4CAF50;
+    }
+
+    .site-navigation {
+      display: flex;
+    }
+
+    .site-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+
+    .site-menu li {
+      margin-left: 30px;
+    }
+
+    .site-menu a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .site-menu a:hover {
+      color: #4CAF50;
+    }
+
+    .toggle-button {
+      display: none;
+    }
+
+    @media (max-width: 1024px) {
+      .site-menu {
+        display: none;
+      }
+
+      .toggle-button {
+        display: block;
+      }
+    }
+  </style>

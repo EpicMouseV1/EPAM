@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+ <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .site-navbar {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-logo a {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .site-logo a span {
+      color: #4CAF50;
+    }
+
+    .toggle-button {
+      display: none;
+    }
+
+    @media (max-width: 1024px) {
+      .toggle-button {
+        display: block;
+      }
+    }
+  </style>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles_operator.css">
+  <title>Operator | Trash Utilization Company</title>
+</head>
+<body>
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+    <div class="container">
+      <div class="site-logo">
+        <a href="index.html" class="text-black"><span class="text-primary">Divide&amp;Conquer</span></a>
+      </div>
+      <div class="toggle-button d-inline-block d-lg-none">
+        <a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3"></span></a>
+      </div>
+    </div>
+  </header>
+  <div class="operator-container">
+    <h2>Operator Dashboard</h2>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('open-applications')">Open Applications</button>
+      <button class="tab-btn" onclick="showTab('my-applications')">My Applications</button>
+      <button class="tab-btn" onclick="showTab('closed-applications')">Closed Applications</button>
+    </div>
+    <div id="open-applications" class="tab-content">
+      <!-- Open applications table -->
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Comment</th>
+            <th>Opened</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Add open application rows here -->
+          <tr>
+            <td>Install Ecobox</td>
+            <td>Need one in the backyard</td>
+            <td>2023-04-15 10:30</td>
+            <td>New</td>
+            <td><button class="get-started">Get Started</button></td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </div>
+    <div id="my-applications" class="tab-content" style="display:none;">
+      <!-- My applications table -->
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Comment</th>
+            <th>Opened</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Add my application rows here -->
+        </tbody>
+      </table>
+    </div>
+    <div id="closed-applications" class="tab-content" style="display:none;">
+      <!-- Closed applications table -->
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Comment</th>
+            <th>Opened</th>
+            <th>Closed</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Add closed application rows here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script>
+    // Get Started button click
+document.querySelectorAll('.get-started').forEach(function (button) {
+  button.addEventListener('click', function (e) {
+    // Move the application from the open-applications table to the my-applications table
+    var row = e.target.closest('tr');
+    row.querySelector('.get-started').remove();
+    row.insertCell(-1).innerHTML = '<button class="assign-team">Assign Team</button>';
+    document.getElementById('my-applications').querySelector('tbody').appendChild(row);
+
+    // Add event listener to the Assign Team button
+    row.querySelector('.assign-team').addEventListener('click', function (e) {
+      // Show team selection and status
+      var teamSelect = '<select><option value="1">Team 1 (Free)</option><option value="2">Team 2 (On the road)</option></select>';
+      var assignButton = e.target;
+      assignButton.parentNode.innerHTML = teamSelect + '<button class="mark-as-done">Mark as Done</button>';
+
+      // Add event listener to the Mark as Done button
+      assignButton.closest('tr').querySelector('.mark-as-done').addEventListener('click', function (e) {
+        if (confirm("Not all the work is done yet, please mark this task when the team and the client have completed the task.")) {
+          // Move the application to the closed-applications table
+          var row = e.target.closest('tr');
+          row.querySelector('.mark-as-done').remove();
+          row.querySelector('select').remove();
+          document.getElementById('closed-applications').querySelector('tbody').appendChild(row);
+        }
+      });
+    });
+  });
+});
+
+    
+
+    
+    </script>
+</body>
+</html>

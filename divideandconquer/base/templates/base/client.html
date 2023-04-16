@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles_client.css">
+  <title>Client | Trash Utilization Company</title>
+</head>
+<body>
+      <header class="site-navbar js-sticky-header site-navbar-target" role="banner">  
+    <div class="container">
+      <div class="site-logo">
+        <a href="index.html" class="text-black"><span class="text-primary">Divide&amp;Conquer</span></a>
+      </div>
+      <div class="toggle-button d-inline-block d-lg-none">
+        <a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3"></span></a>
+      </div>
+    </div>
+  </header>
+  <div class="client-container">
+
+    <h2>Client Dashboard</h2>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('active-applications')">Active Applications</button>
+      <button class="tab-btn" onclick="showTab('closed-applications')">Closed Applications</button>
+    </div>
+    <div id="active-applications" class="tab-content">
+      <!-- Active applications table -->
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Comment</th>
+            <th>Opened</th>
+            <th>Closed</th>
+            <th>Status</th>
+            <th>Operator</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Add active application rows here -->
+          <tr>
+            <td>Install Ecobox</td>
+            <td>Need one in the backyard</td>
+            <td>2023-04-15 10:30</td>
+            <td>-</td>
+            <td>In Progress</td>
+            <td><a href="mailto:operator1@email.com">Operator 1</a></td>
+            <td><button class="mark-completed">Mark as Completed</button></td>
+          </tr>
+          
+          <tr>
+            <td>{{request_records.type}}</td>
+            <td>{{request_records.comments}}</td>
+            <td>{{request_records.open_date}}</td>
+            <dr>{{request_records.close_date}}</td>
+            <td>{{request_records.Status}}</td>
+            <td></td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </div>
+    <div id="closed-applications" class="tab-content" style="display:none;">
+      <!-- Closed applications table -->
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Comment</th>
+            <th>Opened</th>
+            <th>Closed</th>
+            <th>Status</th>
+            <th>Operator</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Add closed application rows here -->
+          
+        </tbody>
+      </table>
+    </div>
+    <div class="new-application-form">
+      <h3>Create New Application</h3>
+      <form method="post">
+        {% csrf_token %}
+        {{ request.as_p }}
+        <button type="submit">submit</button>
+      </form>
+
+      <!--<form id="create-application-form">
+        <div class="form-group">
+          <label for="application-type">Application Type:</label>
+          <select id="application-type" name="application_type" required>
+            <option value="">Select Application Type</option>
+            <option value="install">Install Ecobox</option>
+            <option value="collect">Take Out the Garbage</option>
+            <option value="dismantle">Dismantle Ecobox</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="application-comment">Comment:</label>
+          <textarea id="application-comment" name="comment" rows="3" required></textarea>
+        </div>
+        <button type="submit">Submit Application</button>
+      </form>-->
+    </div>
+
+  </div>
+  <script>
+    
+    function showTab(tabId) {
+  var tabContents = document.querySelectorAll('.tab-content');
+  tabContents.forEach(function (tabContent) {
+    tabContent.style.display = 'none';
+  });
+
+  var tabButtons = document.querySelectorAll('.tab-btn');
+  tabButtons.forEach(function (tabButton) {
+    tabButton.classList.remove('active');
+  });
+
+  document.getElementById(tabId).style.display = 'block';
+  document.querySelector('.tab-btn[onclick="showTab(\'' + tabId + '\')"]').classList.add('active');
+}
+
+// Default active tab
+showTab('active-applications');
+
+// Form submission
+document.getElementById('create-application-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  // Handle form submission here, for example, send data to the server
+  alert('Application submitted!');
+});
+
+// Mark as completed button click
+document.querySelectorAll('.mark-completed').forEach(function (button) {
+  button.addEventListener('click', function (e) {
+    // Handle marking an application as completed, for example, update the server data
+    alert('Marked as completed!');
+  });
+});
+    
+    
+    
+    </script>
+</body>
+</html>
+
+ <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .site-navbar {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-logo a {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .site-logo a span {
+      color: #4CAF50;
+    }
+
+    .toggle-button {
+      display: none;
+    }
+
+    @media (max-width: 1024px) {
+      .toggle-button {
+        display: block;
+      }
+    }
+  </style>
